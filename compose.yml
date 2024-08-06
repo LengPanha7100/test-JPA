@@ -1,0 +1,22 @@
+services:
+  demo1-postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: demo1_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - demo1-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - demo1-network
+volumes:
+  demo1-postgres-data:
+networks:
+  demo1-network:
+    driver: bridge
+
+
+
