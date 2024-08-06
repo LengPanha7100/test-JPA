@@ -11,4 +11,11 @@ import java.math.BigDecimal;
 public class ProductResponse {
     private String name;
     private BigDecimal price ;
+
+    public Product toEntity(){
+        return new Product(null,name,price);
+    }
+    public Product toEntity(Long id){
+        return new Product(id,name,price);
+    }
 }

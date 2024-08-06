@@ -2,6 +2,7 @@ package com.example.demo.service.serviceImp;
 
 import com.example.demo.exception.CustomNotfoundException;
 import com.example.demo.model.Product;
+import com.example.demo.model.ProductDto;
 import com.example.demo.model.ProductResponse;
 import com.example.demo.repository.RepositoryProduct;
 import com.example.demo.service.ServiceProduct;
@@ -18,11 +19,19 @@ public class ServiceImpProduct implements ServiceProduct {
     private final RepositoryProduct repositoryProduct;
 
     @Override
-    public Product createProduct(ProductResponse productResponse) {
-        Product product = new Product();
-        product.setName(productResponse.getName());
-        product.setPrice(productResponse.getPrice());
-        return repositoryProduct.save(product);
+    public ProductDto createProduct(ProductResponse productResponse) {
+//        Product product = new Product();
+//        product.setName(productResponse.getName());
+//        product.setPrice(productResponse.getPrice());
+//        return repositoryProduct.save(product);
+
+        return repositoryProduct.save(productResponse.toEntity()).toDto();
+
+//        Product product = Product.builder()
+//                .name(productResponse.getName())
+//                .price(productResponse.getPrice())
+//                .build();
+//        return repositoryProduct.save(product);
     }
 
     @Override
@@ -47,10 +56,12 @@ public class ServiceImpProduct implements ServiceProduct {
     @Override
     public Product updateProduct(ProductResponse productResponse, Long id) {
          Optional<Product> productById = getProductById(id);
-         Product product = productById.get();
-         product.setName(productResponse.getName());
-         product.setPrice(productResponse.getPrice());
-         return repositoryProduct.save(product);
+//         Product product = productById.get();
+//         product.setName(productResponse.getName());
+//         product.setPrice(productResponse.getPrice());
+//         return repositoryProduct.save(product);
+
+        return repositoryProduct.save(productResponse.toEntity(id));
 
     }
 

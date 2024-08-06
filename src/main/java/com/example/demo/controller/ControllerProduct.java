@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Product;
+import com.example.demo.model.ProductDto;
 import com.example.demo.model.ProductResponse;
 import com.example.demo.repository.RepositoryProduct;
 import com.example.demo.service.ServiceProduct;
@@ -25,7 +26,7 @@ public class ControllerProduct {
 
     @PostMapping
     public ResponseEntity<?> createProduct (@RequestBody ProductResponse productResponse){
-        Product product = serviceProduct.createProduct(productResponse);
+        ProductDto product = serviceProduct.createProduct(productResponse);
         return ResponseEntity.ok(product);
 
     }
